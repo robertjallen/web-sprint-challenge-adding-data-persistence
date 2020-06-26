@@ -22,4 +22,13 @@ router.get('/projects/:id/resources', async (req, res, next) => {
   }
 });
 
+router.get('/projects/:id/tasks', async (req, res, next) => {
+  try {
+    const tasks = await projects_model.getTasks(req.params.id)
+    res.json(tasks)
+  } catch (error) {
+    next(error)
+  }
+});
+
 module.exports = router;

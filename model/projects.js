@@ -13,15 +13,15 @@ function getProjectResources(ID){
     .select("r.name", "r.description", "p.name as project name")
 }
 
-// function getInstructions(ID){
-//   return db("recipes as r")
-//   .where("r.id", ID)
-//   .join("steps as s", "s.recipe_id", "r.id")
-//   .select("s.instructions", "s.step_number") 
-// }
+function getTasks(ID){
+  return db("project as p")
+  .where("p.id", ID)
+  .join("task as t", "t.project_id", "p.id")
+  .select("p.name as project", "t.notes", "t.description") 
+}
 
 module.exports = {
   find,
   getProjectResources,
-  // getInstructions,
+  getTasks,
 }
