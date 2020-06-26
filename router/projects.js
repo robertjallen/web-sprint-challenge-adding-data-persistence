@@ -13,4 +13,13 @@ router.get('/projects', async (req, res, next) => {
   }
 });
 
+router.get('/projects/:id/resources', async (req, res, next) => {
+  try {
+    const resources = await projects_model.getProjectResources(req.params.id)
+    res.json(resources)
+  } catch (error) {
+    next(error)
+  }
+});
+
 module.exports = router;

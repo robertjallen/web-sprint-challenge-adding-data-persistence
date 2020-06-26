@@ -5,13 +5,13 @@ function find(){
  return db("project")
 }
 
-// function getShoppingList(ID){
-//   return db("recipes as r")
-//     .where("r.id",  ID)
-//     .join("recipe_ingredients as ri", "ri.recipe_id", "r.id")
-//     .join("ingredients as i", "i.id", "ri.ingredient_id")
-//     .select("r.name as recipe name", "i.name as ingredient name", "ri.quantity")
-// }
+function getProjectResources(ID){
+  return db("project as p")
+    .where("p.id",  ID)
+    .join("projects_resources as pr", "pr.project_id", "p.id")
+    .join("resource as r", "r.id", "pr.resource_id")
+    .select("r.name", "r.description", "p.name as project name")
+}
 
 // function getInstructions(ID){
 //   return db("recipes as r")
@@ -22,6 +22,6 @@ function find(){
 
 module.exports = {
   find,
-  // getShoppingList,
+  getProjectResources,
   // getInstructions,
 }
