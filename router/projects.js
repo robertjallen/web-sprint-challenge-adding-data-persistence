@@ -13,6 +13,17 @@ router.get('/projects', async (req, res, next) => {
   }
 });
 
+router.get('/projects/:id', async (req, res, next) => {
+  try {
+    const project = await projects_model.findById(req.params.id)
+    res.json(project)
+  } catch (error) {
+    next(error)
+  }
+});
+
+
+
 router.get('/projects/:id/resources', async (req, res, next) => {
   try {
     const resources = await projects_model.getProjectResources(req.params.id)

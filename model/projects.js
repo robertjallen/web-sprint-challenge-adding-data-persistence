@@ -17,11 +17,17 @@ function getTasks(ID){
   return db("project as p")
   .where("p.id", ID)
   .join("task as t", "t.project_id", "p.id")
-  .select("p.name as project", "t.notes", "t.description") 
+  .select("p.name as project", "t.notes", "t.description", "t.completed") 
+}
+function findById(ID) {
+  return db("project as p")
+		.where("p.id", ID)
+		.first("p.id", "p.name", "p.description", "p.completed")
 }
 
 module.exports = {
   find,
   getProjectResources,
   getTasks,
+  findById,
 }
