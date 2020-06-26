@@ -25,9 +25,14 @@ function findById(ID) {
 		.first("p.id", "p.name", "p.description", "p.completed")
 }
 
+function add(p){
+  return db('project').insert(p)
+}
+
 module.exports = {
   find,
   getProjectResources,
   getTasks,
   findById,
+  add,
 }

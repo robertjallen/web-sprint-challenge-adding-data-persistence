@@ -42,4 +42,19 @@ router.get('/projects/:id/tasks', async (req, res, next) => {
   }
 });
 
+
+
+////////////////////
+//    CREATE
+////////////////////
+
+router.post('/projects', async (req, res, next) => {
+  try {
+    const project = await projects_model.add(req.body)
+    res.json(project)
+  } catch (error) {
+    next(error)
+  }
+});
+
 module.exports = router;
