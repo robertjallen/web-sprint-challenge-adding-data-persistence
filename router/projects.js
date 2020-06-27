@@ -13,6 +13,15 @@ router.get('/projects', async (req, res, next) => {
   }
 });
 
+router.get('/resources', async (req, res, next) => {
+  try {
+    const resource = await projects_model.findResources()
+    res.json(resource)
+  } catch (error) {
+    next(error)
+  }
+});
+
 router.get('/projects/:id', async (req, res, next) => {
   try {
     const project = await projects_model.findById(req.params.id)
@@ -56,5 +65,25 @@ router.post('/projects', async (req, res, next) => {
     next(error)
   }
 });
+
+router.post('/projects/:id/resources', async (req, res, next) => {
+  try {
+    // const resource = await projects_model.addResource(req.body)
+    const projectResource = await projects_model.addProjectResources(req.body, req.params.id)
+    res.json(projectResource)
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.post('/resources', async (req, res, next) => {
+  try {
+    const resource = await projects_model.addResource(req.body)
+    res.json(resource)
+  } catch (error) {
+    next(error)
+  }
+});
+
 
 module.exports = router;

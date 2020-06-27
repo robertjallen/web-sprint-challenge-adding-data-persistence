@@ -5,6 +5,10 @@ function find(){
  return db("project")
 }
 
+function findResources(){
+  return db("resource")
+ }
+
 function getProjectResources(ID){
   return db("project as p")
     .where("p.id",  ID)
@@ -29,10 +33,27 @@ function add(p){
   return db('project').insert(p)
 }
 
+function addResource(r){
+  return db('resource').insert(r)
+}
+
+function addProjectResources(r, ID){
+  return addResource(r).then( id => {
+    const rID = id[0]
+    return db("projects_resources").insert({project_id: ID, resource_id: rID})
+  })
+}
+
+
+
+
 module.exports = {
   find,
+  findResources,
   getProjectResources,
   getTasks,
   findById,
   add,
+  addResource,
+  addProjectResources,
 }
