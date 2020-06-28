@@ -1,10 +1,10 @@
 const express = require('express');
-// const RecipeRouter = require('./router/recipes')
+const ProjectsRouter = require('./router/projects')
 
 const server = express();
 
 server.use(express.json());
-// server.use(RecipeRouter);
+server.use(ProjectsRouter);
 
 server.get('/', (req, res) => {
   res.send('projects on deck...')
