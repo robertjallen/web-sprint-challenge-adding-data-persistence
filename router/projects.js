@@ -4,6 +4,10 @@ const model = require('../model/projects');
 
 const router = express.Router();
 
+///////////////////////////////////////////////////////////
+//    READ
+//////////////////////////////////////////////////////////
+
 router.get('/projects', async (req, res, next) => {
   try {
     const projects = await model.getProjects()
@@ -48,5 +52,39 @@ router.get('/projects/:id/tasks', async (req, res, next) => {
     next(error)
   }
 });
+
+////////////////////////////////////
+//         CREATE
+///////////////////////////////////
+router.post('/projects', async (req, res, next) => {
+  try {
+    const project = await model.add(req.body)
+    res.json(project)
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.post('/projects/:id/resources', async (req, res, next) => {
+  try {
+    // const resource = await projects_model.addResource(req.body)
+    const projectResource = await model.addProjectResources(req.body, req.params.id)
+    res.json(projectResource)
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.post('/resources', async (req, res, next) => {
+  try {
+    const resource = await model.addResource(req.body)
+    res.json(resource)
+  } catch (error) {
+    next(error)
+  }
+});
+
+
+
 
 module.exports = router;

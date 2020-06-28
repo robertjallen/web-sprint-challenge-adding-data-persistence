@@ -29,7 +29,28 @@ function getTasks(ID){
   .select("p.name as project", "t.notes", "t.description", "t.completed") 
 }
 
+//////////////
+//CREATE
+//////////////
+function add(p){
+  return db('project').insert(p)
+}
+
+function addResource(r){
+  return db('resource').insert(r)
+}
+
+function addProjectResources(r, ID){
+  return addResource(r).then( id => {
+    const rID = id[0]
+    return db("projects_resources").insert({project_id: ID, resource_id: rID})
+  })
+}
+
 module.exports = {
+  addResource,
+  addProjectResources,
+  add,
   getProjects,
   findById,
   findResources,
