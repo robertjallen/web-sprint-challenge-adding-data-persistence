@@ -7,7 +7,7 @@ exports.up = async function(knex) {
     tbl.text('name').notNullable();
     // creates a text field called description which is required
     tbl.text('description').notNullable();
-    tbl.boolean('complete').defaultTo(false);
+    tbl.boolean('completed').defaultTo(false);
   });
 
   await knex.schema.createTable('resource', tbl => {

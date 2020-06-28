@@ -13,4 +13,40 @@ router.get('/projects', async (req, res, next) => {
   }
 });
 
+router.get('/resources', async (req, res, next) => {
+  try {
+    const resource = await model.findResources()
+    res.json(resource)
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.get('/projects/:id', async (req, res, next) => {
+  try {
+    const project = await model.findById(req.params.id)
+    res.json(project)
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.get('/projects/:id/resources', async (req, res, next) => {
+  try {
+    const resources = await model.getProjectResources(req.params.id)
+    res.json(resources)
+  } catch (error) {
+    next(error)
+  }
+});
+
+router.get('/projects/:id/tasks', async (req, res, next) => {
+  try {
+    const tasks = await model.getTasks(req.params.id)
+    res.json(tasks)
+  } catch (error) {
+    next(error)
+  }
+});
+
 module.exports = router;
