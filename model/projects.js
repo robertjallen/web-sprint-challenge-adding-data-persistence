@@ -54,6 +54,15 @@ function update(project, ID){
   return db('project').where({ id: ID }).update(project);
 }
 
+/////////////
+//  DELETE
+///////////
+function remove(ID){
+  return db('project')
+  .where({ id: ID })
+  .del()
+}
+
 module.exports = {
   addResource,
   addProjectResources,
@@ -64,4 +73,5 @@ module.exports = {
   getProjectResources,
   getTasks,
   update,
+  remove,
 }

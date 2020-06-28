@@ -23,10 +23,10 @@ exports.up = async function(knex) {
     tbl.integer('project_id')
         // forces integer to be positive
         .unsigned()
-        .notNullable()
         .references('id')
         // this table must exist already
         .inTable('project')
+        .onDelete("SET NULL")
 
      //description
      tbl.text('description').notNullable();
@@ -40,10 +40,10 @@ exports.up = async function(knex) {
     //project_id
     tbl.integer('project_id')
         .unsigned()
-        .notNullable()
         .references('id')
         // this table must exist already
         .inTable('project')
+        .onDelete("SET NULL")
 
     //resource_id
     tbl.integer('resource_id')

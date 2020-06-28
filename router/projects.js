@@ -98,6 +98,21 @@ router.put('/projects/:id', async (req, res, next) => {
 });
 
 
+////////////////////////////
+//  DELETE
+///////////////////////////
+
+router.delete('/projects/:id', async (req, res, next) => {
+  try {
+    const resource = await model.remove(req.params.id)
+    res.json(resource)
+  } catch (error) {
+    next(error)
+  }
+});
+
+
+
 
 
 module.exports = router;
