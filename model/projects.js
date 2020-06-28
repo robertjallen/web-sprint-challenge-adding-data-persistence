@@ -47,6 +47,13 @@ function addProjectResources(r, ID){
   })
 }
 
+////////////////
+//    UPDATE
+////////////////
+function update(project, ID){
+  return db('project').where({ id: ID }).update(project);
+}
+
 module.exports = {
   addResource,
   addProjectResources,
@@ -56,4 +63,5 @@ module.exports = {
   findResources,
   getProjectResources,
   getTasks,
+  update,
 }

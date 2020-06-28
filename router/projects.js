@@ -84,6 +84,19 @@ router.post('/resources', async (req, res, next) => {
   }
 });
 
+////////////////////////////////
+//   UPDATE
+///////////////////////////////
+
+router.put('/projects/:id', async (req, res, next) => {
+  try {
+    const resource = await model.update(req.body, req.params.id)
+    res.json(resource)
+  } catch (error) {
+    next(error)
+  }
+});
+
 
 
 
