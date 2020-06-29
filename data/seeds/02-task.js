@@ -1,13 +1,16 @@
 
-exports.seed = function(knex) {
+exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  await knex('task').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('task').insert([
+        {project_id: 1, description: 'asfds1', notes: 'some stuff', completed: false},
+        {project_id: 1, description: 'asfds1', notes: 'some stuff', completed: false},
+        {project_id: 2, description: 'asfds2', notes: 'some stuff', completed: false},
+        {project_id: 2, description: 'asfds2', notes: 'some stuff', completed: false},
+        {project_id: 3, description: 'asfds3', notes: 'some stuff', completed: false},
+        {project_id: 3, description: 'asfds3', notes: 'some stuff', completed: false},
       ]);
     });
 };
